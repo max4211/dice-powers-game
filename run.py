@@ -1,9 +1,14 @@
-from prettytable import PrettyTable # might need to install this
+from prettytable import PrettyTable, MARKDOWN # might need to install this
 import numpy as np
 import sys
 
 def print_matrix_as_table(matrix):
     table = PrettyTable()
+    table.align = "r"
+    table.set_style(MARKDOWN)
+
+    # Transform to pretty integers
+    matrix = [[f'{number:,}' for number in row] for row in matrix]
 
     # Add column headers
     table.field_names = [''] + [f'{i+1}' for i in range(len(matrix[0]))]
@@ -12,8 +17,7 @@ def print_matrix_as_table(matrix):
     for i, row in enumerate(matrix):
         table.add_row([f'{i+1}'] + row)
 
-    # I couldn't quite get this markdown friendly, so just asked GPT to translate it for me, thanks Sam!
-    print(table.get_string(markdown=True))
+    print(table.get_string())
 
 def create_matrix(rows=6, cols=6):
     matrix = [[pow(i+1,j+1) for j in range(rows)] for i in range(cols)]
