@@ -12,6 +12,7 @@ def print_matrix_as_table(matrix):
     for i, row in enumerate(matrix):
         table.add_row([f'{i+1}'] + row)
 
+    # I couldn't quite get this markdown friendly, so just asked GPT to translate it for me, thanks Sam!
     print(table.get_string(markdown=True))
 
 def create_matrix(rows=6, cols=6):
@@ -57,7 +58,6 @@ def main():
         print("Error: Rows and columns must be integers.")
         sys.exit(1)
 
-# CR masmith: accept arguments
 if __name__ == "__main__":
     main()
 
